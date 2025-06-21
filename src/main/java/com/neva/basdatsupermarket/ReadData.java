@@ -138,10 +138,9 @@ private JComboBox<String> comboBoxTabel;
     
 
     private void loadData(String tableName, String keyword) {
-    String url = "jdbc:sqlserver://localhost\\Neva29:1433;databaseName=db_supermarket;encrypt=true;trustServerCertificate=true";
-    String user = "neparim"; // sesuaikan
-    String password = "123"; // sesuaikan
-
+    String url = "jdbc:sqlserver://localhost:1433;databaseName=SistemInventarisDB;encrypt=true;trustServerCertificate=true";
+    String user = "sa"; // sesuaikan
+    String password = "1234"; // sesuaikan
     String sql = "SELECT * FROM " + tableName;
 
     if (keyword != null && !keyword.isEmpty()) {
