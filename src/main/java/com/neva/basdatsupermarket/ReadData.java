@@ -135,48 +135,105 @@ private JComboBox<String> comboBoxTabel;
     }//GEN-LAST:event_ComboBoxDataTableActionPerformed
    // Event: Tampilkan data saat memilih tabel
        
-    
+    private Connection connectDb() throws SQLException {
+    String url = "jdbc:sqlserver://localhost\\Neva29:1433;databaseName=db_supermarket;encrypt=true;trustServerCertificate=true";
+    String user = "neparim"; // sesuaikan
+    String password = "123"; // sesuaikan
+    return DriverManager.getConnection(url, user, password);
+}
 
     private void loadData(String tableName, String keyword) {
-    String url = "jdbc:sqlserver://localhost:1433;databaseName=SistemInventarisDB;encrypt=true;trustServerCertificate=true";
-    String user = "sa"; // sesuaikan
-    String password = "1234"; // sesuaikan
-    String sql = "SELECT * FROM " + tableName;
-
-    if (keyword != null && !keyword.isEmpty()) {
-        sql += " WHERE ";
+    String sql;
+    // Cek jika tabel yang dipilih adalah 'Produk'
+    if (tableName.equalsIgnoreCase("Produk")) {
+        sql = "SELECT p.ID_Produk, p.Nama_Produk, k.Nama_Kategori, s.Nama_Supplier, p.Harga, p.Stok_Aktual " +
+              "FROM Produk p " +
+              "JOIN Kategori k ON p.ID_Kategori = k.ID_Kategori " +
+              "JOIN Supplier s ON p.ID_Supplier = s.ID_Supplier";
+    
+    // BARU: Cek jika tabel yang dipilih adalah 'Mutasi_Stok'
+    } else if (tableName.equalsIgnoreCase("Mutasi_Stok")) {
+        sql = "SELECT ms.ID_Mutasi, p.Nama_Produk, s.Nama_Staf, ms.Tanggal, ms.Tipe_Mutasi, ms.Jumlah " +
+              "FROM Mutasi_Stok ms " +
+              "JOIN Produk p ON ms.ID_Produk = p.ID_Produk " +
+              "JOIN Staf s ON ms.ID_Staf = s.ID_Staf";
+              
+    } else {
+        // Untuk tabel lainnya, gunakan query standar
+        sql = "SELECT * FROM " + tableName;
     }
 
-    try (Connection conn = DriverManager.getConnection(url, user, password);
-         Statement stmt = conn.createStatement()) {
+    // Logika untuk fungsionalitas pencarian (search)
+    if (keyword != null && !keyword.isEmpty()) {
+        if (tableName.equalsIgnoreCase("Produk")) {
+            sql += " WHERE p.ID_Produk LIKE '%" + keyword + "%' OR " +
+                   "p.Nama_Produk LIKE '%" + keyword + "%' OR " +
+                   "k.Nama_Kategori LIKE '%" + keyword + "%' OR " +
+                   "s.Nama_Supplier LIKE '%" + keyword + "%' OR " +
+                   "p.Harga LIKE '%" + keyword + "%' OR " +
+                   "p.Stok LIKE '%" + keyword + "%'";
+                   
+        // BARU: Logika pencarian untuk tabel Mutasi_Stok
+        } else if (tableName.equalsIgnoreCase("Mutasi_Stok")) {
+            sql += " WHERE p.Nama_Produk LIKE '%" + keyword + "%' OR " +
+                   "s.Nama_Staf LIKE '%" + keyword + "%' OR " +
+                   "ms.Tanggal LIKE '%" + keyword + "%' OR " +
+                   "ms.Tipe_Mutasi LIKE '%" + keyword + "%' OR " +
+                   "ms.Jumlah LIKE '%" + keyword + "%'";
 
-        // Jika pencarian aktif, bangun klausa WHERE
-        if (keyword != null && !keyword.isEmpty()) {
-            ResultSet rsCols = stmt.executeQuery("SELECT TOP 1 * FROM " + tableName);
-            ResultSetMetaData meta = rsCols.getMetaData();
-            int colCount = meta.getColumnCount();
-            StringBuilder where = new StringBuilder();
-            for (int i = 1; i <= colCount; i++) {
-                where.append(meta.getColumnName(i)).append(" LIKE '%").append(keyword).append("%'");
-                if (i < colCount) where.append(" OR ");
+        } else {
+            // Logika pencarian generik untuk tabel lain
+            try (Connection conn = connectDb();
+                 Statement stmt = conn.createStatement()) {
+                 ResultSet rsCols = stmt.executeQuery("SELECT TOP 1 * FROM " + tableName);
+                 ResultSetMetaData meta = rsCols.getMetaData();
+                 int colCount = meta.getColumnCount();
+                 StringBuilder where = new StringBuilder(" WHERE ");
+                 for (int i = 1; i <= colCount; i++) {
+                     where.append(meta.getColumnName(i)).append(" LIKE '%").append(keyword).append("%'");
+                     if (i < colCount) where.append(" OR ");
+                 }
+                 sql += where.toString();
+            } catch (SQLException e) {
+                 JOptionPane.showMessageDialog(this, "Error membangun query pencarian: " + e.getMessage());
             }
-            sql += where.toString();
         }
+    }
 
-        ResultSet rs = stmt.executeQuery(sql);
+    try (Connection conn = connectDb();
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery(sql)) {
+
         ResultSetMetaData meta = rs.getMetaData();
         int columnCount = meta.getColumnCount();
 
         Vector<String> columnNames = new Vector<>();
         for (int i = 1; i <= columnCount; i++) {
-            columnNames.add(meta.getColumnName(i));
+            String columnName = meta.getColumnName(i);
+            // Mengganti nama kolom untuk tampilan yang lebih baik
+            if (columnName.equals("Nama_Kategori")) {
+                columnNames.add("Kategori");
+            } else if (columnName.equals("Nama_Supplier")) {
+                columnNames.add("Supplier");
+            } else if (columnName.equals("Nama_Produk")) {
+                columnNames.add("Produk");
+            } else if (columnName.equals("Nama_Staf")) {
+                columnNames.add("Staf");
+            } else {
+                columnNames.add(columnName);
+            }
         }
 
         Vector<Vector<Object>> data = new Vector<>();
         while (rs.next()) {
             Vector<Object> row = new Vector<>();
             for (int i = 1; i <= columnCount; i++) {
-                row.add(rs.getObject(i));
+                // Khusus untuk kolom Tanggal, format jika perlu
+                if (meta.getColumnName(i).equalsIgnoreCase("Tanggal") && rs.getObject(i) != null) {
+                    row.add(rs.getDate(i).toString());
+                } else {
+                    row.add(rs.getObject(i));
+                }
             }
             data.add(row);
         }
@@ -186,6 +243,7 @@ private JComboBox<String> comboBoxTabel;
 
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(this, "Gagal membaca data: " + e.getMessage());
+        e.printStackTrace();
     }
 }
     /**

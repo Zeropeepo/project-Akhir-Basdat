@@ -3,8 +3,10 @@ package com.neva.basdatsupermarket;
 
 
 public class loginPage extends javax.swing.JFrame {
-    String usernameAdmin = "test";
-    String passwordAdmin = "123";
+    String usernameAdmin = "admin";
+    String passwordAdmin = "admin123";
+    String userNormal = "user";
+    String passNormal = "123";
     public loginPage() {
         initComponents();
         
@@ -138,6 +140,12 @@ public class loginPage extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(usernameText.getText().equals(usernameAdmin) && passwordText.getText().equals(passwordAdmin)){
+            javax.swing.JOptionPane.showMessageDialog(this, "ADMIN USER Login Successful!");
+            DeleteData panel = new DeleteData();
+            panel.setVisible(true);
+            dispose();
+        }
+        else if(usernameText.getText().equals(userNormal) && passwordText.getText().equals(passNormal)){
             javax.swing.JOptionPane.showMessageDialog(this, "Login Successful!");
             ReadData panel = new ReadData();
             panel.setVisible(true);
