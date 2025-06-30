@@ -594,7 +594,7 @@ public class DeleteData extends javax.swing.JFrame {
         String produkId = produkMap.get((String) produkComboBox.getSelectedItem());
         String stafId = stafMap.get((String) stafComboBox.getSelectedItem());
 
-        String sql = "INSERT INTO Mutasi_Stok (ID_Mutasi, ID_Produk, ID_Staf, Tanggal, Jenis_Mutasi, Jumlah, Keterangan) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Mutasi_Stok (ID_Mutasi, ID_Produk, ID_Staf, Tanggal, Tipe_Mutasi, Jumlah, Keterangan) VALUES (?, ?, ?, ?, ?, ?, ?)";
         
         try (Connection conn = connectDb(); PreparedStatement pst = conn.prepareStatement(sql)) {
             String newId = getNextId("Mutasi_Stok");
