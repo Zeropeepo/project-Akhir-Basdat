@@ -3,15 +3,16 @@ package com.neva.basdatsupermarket;
 
 
 public class loginPage extends javax.swing.JFrame {
-    String usernameAdmin = "admin";
-    String passwordAdmin = "admin123";
-    String userNormal = "user";
-    String passNormal = "123";
+    
     public loginPage() {
         initComponents();
         
+        jPanel1.setFocusable(true);
+        jPanel1.requestFocusInWindow();
+        
         passwordText.setText("PASSWORD");
         passwordText.setEchoChar((char)0);
+        this.getRootPane().setDefaultButton(loginButton);
     }
 
         @SuppressWarnings("unchecked")
@@ -20,8 +21,9 @@ public class loginPage extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         usernameText = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        loginButton = new javax.swing.JButton();
         passwordText = new javax.swing.JPasswordField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Aplikasi Manage Inventaris");
@@ -53,15 +55,15 @@ public class loginPage extends javax.swing.JFrame {
         });
         jPanel1.add(usernameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 350, 330, 70));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(33, 72, 192));
-        jButton1.setText("LOGIN");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        loginButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        loginButton.setForeground(new java.awt.Color(33, 72, 192));
+        loginButton.setText("LOGIN");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                loginButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 570, 330, 60));
+        jPanel1.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 570, 330, 60));
 
         passwordText.setBackground(new java.awt.Color(33, 72, 192));
         passwordText.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -83,6 +85,12 @@ public class loginPage extends javax.swing.JFrame {
             }
         });
         jPanel1.add(passwordText, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 450, 330, 70));
+
+        jLabel2.setFont(new java.awt.Font("Tw Cen MT", 1, 100)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("INVENTARIS APP");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 90, 1360, 80));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,25 +146,29 @@ public class loginPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_passwordTextFocusLost
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         if(usernameText.getText().equals(usernameAdmin) && passwordText.getText().equals(passwordAdmin)){
             javax.swing.JOptionPane.showMessageDialog(this, "ADMIN USER Login Successful!");
-            DeleteData panel = new DeleteData();
+            ManagerPanel panel = new ManagerPanel();
             panel.setVisible(true);
             dispose();
         }
         else if(usernameText.getText().equals(userNormal) && passwordText.getText().equals(passNormal)){
             javax.swing.JOptionPane.showMessageDialog(this, "Login Successful!");
-            ReadData panel = new ReadData();
+            StaffPanel panel = new StaffPanel();
             panel.setVisible(true);
             dispose();
         }
         else{
             javax.swing.JOptionPane.showMessageDialog(this, "Invalid Username or Password.");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_loginButtonActionPerformed
 
-  
+    String usernameAdmin = "admin";
+    String passwordAdmin = "admin123123";
+    String userNormal = "user";
+    String passNormal = "123123123";
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -190,8 +202,9 @@ public class loginPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton loginButton;
     private javax.swing.JPasswordField passwordText;
     private javax.swing.JTextField usernameText;
     // End of variables declaration//GEN-END:variables

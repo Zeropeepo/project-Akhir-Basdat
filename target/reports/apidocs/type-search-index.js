@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.neva.basdatsupermarket","l":"BasdatSupermarket"},{"p":"com.neva.basdatsupermarket","l":"loginPage"},{"p":"com.neva.basdatsupermarket","l":"ManagerPanel"},{"p":"com.neva.basdatsupermarket","l":"StaffPanel"}];updateSearchResults();

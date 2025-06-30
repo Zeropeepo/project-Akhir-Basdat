@@ -1,0 +1,54 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+-classpath
+'C:/Users/lenov/.m2/repository/org/netbeans/external/AbsoluteLayout/RELEASE250/AbsoluteLayout-RELEASE250.jar;C:/Users/lenov/.m2/repository/com/formdev/flatlaf/3.6/flatlaf-3.6.jar;C:/Users/lenov/.m2/repository/com/microsoft/sqlserver/mssql-jdbc/12.10.0.jre11/mssql-jdbc-12.10.0.jre11.jar'
+-encoding
+'UTF-8'
+-protected
+--release
+21
+-sourcepath
+'C:/Users/lenov/OneDrive/Documents/NetBeansProjects/basdatSupermarket/src/main/java;C:/Users/lenov/OneDrive/Documents/NetBeansProjects/basdatSupermarket/target/generated-sources/annotations'
+-author
+-bottom
+'Copyright &#169; 2025. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/lenov/OneDrive/Documents/NetBeansProjects/basdatSupermarket/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'basdatSupermarket 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'basdatSupermarket 1.0-SNAPSHOT API'
+com.neva.basdatsupermarket
+C:\Users\lenov\.m2\repository\org\netbeans\external\AbsoluteLayout\RELEASE250\AbsoluteLayout-RELEASE250.jar = 1748788272674
+C:\Users\lenov\.m2\repository\com\formdev\flatlaf\3.6\flatlaf-3.6.jar = 1748789987137
+C:\Users\lenov\.m2\repository\com\microsoft\sqlserver\mssql-jdbc\12.10.0.jre11\mssql-jdbc-12.10.0.jre11.jar = 1748953934120
+C:\Users\lenov\OneDrive\Documents\NetBeansProjects\basdatSupermarket\src\main\java = 1750307769370
+C:\Users\lenov\OneDrive\Documents\NetBeansProjects\basdatSupermarket\target\generated-sources\annotations = 1751254833104
+C:\Users\lenov\OneDrive\Documents\NetBeansProjects\basdatSupermarket\target\reports\apidocs\allclasses-index.html = 1751254839869
+C:\Users\lenov\OneDrive\Documents\NetBeansProjects\basdatSupermarket\target\reports\apidocs\allpackages-index.html = 1751254839875
+C:\Users\lenov\OneDrive\Documents\NetBeansProjects\basdatSupermarket\target\reports\apidocs\copy.svg = 1751254839941
+C:\Users\lenov\OneDrive\Documents\NetBeansProjects\basdatSupermarket\target\reports\apidocs\element-list = 1751254839690
+C:\Users\lenov\OneDrive\Documents\NetBeansProjects\basdatSupermarket\target\reports\apidocs\help-doc.html = 1751254839926
+C:\Users\lenov\OneDrive\Documents\NetBeansProjects\basdatSupermarket\target\reports\apidocs\index-all.html = 1751254839905
+C:\Users\lenov\OneDrive\Documents\NetBeansProjects\basdatSupermarket\target\reports\apidocs\index.html = 1751254839915
+C:\Users\lenov\OneDrive\Documents\NetBeansProjects\basdatSupermarket\target\reports\apidocs\link.svg = 1751254839946
+C:\Users\lenov\OneDrive\Documents\NetBeansProjects\basdatSupermarket\target\reports\apidocs\member-search-index.js = 1751254839885
+C:\Users\lenov\OneDrive\Documents\NetBeansProjects\basdatSupermarket\target\reports\apidocs\module-search-index.js = 1751254839878
+C:\Users\lenov\OneDrive\Documents\NetBeansProjects\basdatSupermarket\target\reports\apidocs\overview-tree.html = 1751254839836
+C:\Users\lenov\OneDrive\Documents\NetBeansProjects\basdatSupermarket\target\reports\apidocs\package-search-index.js = 1751254839880
+C:\Users\lenov\OneDrive\Documents\NetBeansProjects\basdatSupermarket\target\reports\apidocs\script.js = 1751254839935
+C:\Users\lenov\OneDrive\Documents\NetBeansProjects\basdatSupermarket\target\reports\apidocs\search-page.js = 1751254839957
+C:\Users\lenov\OneDrive\Documents\NetBeansProjects\basdatSupermarket\target\reports\apidocs\search.html = 1751254839910
+C:\Users\lenov\OneDrive\Documents\NetBeansProjects\basdatSupermarket\target\reports\apidocs\search.js = 1751254839957
+C:\Users\lenov\OneDrive\Documents\NetBeansProjects\basdatSupermarket\target\reports\apidocs\serialized-form.html = 1751254839800
+C:\Users\lenov\OneDrive\Documents\NetBeansProjects\basdatSupermarket\target\reports\apidocs\stylesheet.css = 1751254839926
+C:\Users\lenov\OneDrive\Documents\NetBeansProjects\basdatSupermarket\target\reports\apidocs\tag-search-index.js = 1751254839885
+C:\Users\lenov\OneDrive\Documents\NetBeansProjects\basdatSupermarket\target\reports\apidocs\type-search-index.js = 1751254839880
