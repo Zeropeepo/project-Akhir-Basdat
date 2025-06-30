@@ -12,7 +12,7 @@ public class loginPage extends javax.swing.JFrame {
         
         passwordText.setText("PASSWORD");
         passwordText.setEchoChar((char)0);
-        this.getRootPane().setDefaultButton(loginButton);
+        
     }
 
         @SuppressWarnings("unchecked")
