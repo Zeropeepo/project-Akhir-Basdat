@@ -170,7 +170,7 @@ private JComboBox<String> comboBoxTabel;
                    "k.Nama_Kategori LIKE '%" + keyword + "%' OR " +
                    "s.Nama_Supplier LIKE '%" + keyword + "%' OR " +
                    "p.Harga LIKE '%" + keyword + "%' OR " +
-                   "p.Stok LIKE '%" + keyword + "%'";
+                   "p.Stok_Aktual LIKE '%" + keyword + "%'";
                    
         // BARU: Logika pencarian untuk tabel Mutasi_Stok
         } else if (tableName.equalsIgnoreCase("Mutasi_Stok")) {
