@@ -500,7 +500,6 @@ public class ManagerPanel extends javax.swing.JFrame {
     JComboBox<String> jenisComboBox = new JComboBox<>(new String[]{"Masuk", "Keluar"});
     JTextField tanggalField = new JTextField(java.time.LocalDate.now().toString()); // Default tanggal hari ini
     JTextField jumlahField = new JTextField();
-    JTextField keteranganField = new JTextField();
 
     // 3. Buat panel
     JPanel panel = new JPanel(new java.awt.GridLayout(0, 2, 5, 5));
@@ -514,8 +513,6 @@ public class ManagerPanel extends javax.swing.JFrame {
     panel.add(tanggalField);
     panel.add(new JLabel("Jumlah:"));
     panel.add(jumlahField);
-    panel.add(new JLabel("Keterangan:"));
-    panel.add(keteranganField);
 
     // 4. Tampilkan dialog
     int result = JOptionPane.showConfirmDialog(this, panel, "Tambah Mutasi Stok Baru", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
@@ -525,7 +522,7 @@ public class ManagerPanel extends javax.swing.JFrame {
         String produkId = produkMap.get((String) produkComboBox.getSelectedItem());
         String stafId = stafMap.get((String) stafComboBox.getSelectedItem());
 
-        String sql = "INSERT INTO Mutasi_Stok (ID_Mutasi, ID_Produk, ID_Staf, Tanggal, Tipe_Mutasi, Jumlah, Keterangan) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Mutasi_Stok (ID_Mutasi, ID_Produk, ID_Staf, Tanggal, Tipe_Mutasi, Jumlah) VALUES (?, ?, ?, ?, ?, ?)";
         
         try (Connection conn = connectDb(); PreparedStatement pst = conn.prepareStatement(sql)) {
             String newId = getNextId("Mutasi_Stok");
@@ -535,7 +532,6 @@ public class ManagerPanel extends javax.swing.JFrame {
             pst.setDate(4, java.sql.Date.valueOf(tanggalField.getText())); // Ubah String ke SQL Date
             pst.setString(5, (String) jenisComboBox.getSelectedItem());
             pst.setInt(6, Integer.parseInt(jumlahField.getText()));
-            pst.setString(7, keteranganField.getText());
 
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "Data mutasi berhasil ditambahkan dengan ID: " + newId);
